@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/samanashrafi/Artemisia-app/issues"
   },
-  "homepage": "https://github.com/samanashrafi/Artemisia-app#readme"
+  "homepage": "https://github.com/samanashrafi/Artemisia-app#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
 }
