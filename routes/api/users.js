@@ -2,6 +2,9 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 
+// Load Input Validation
+const validateRegister = require("../../validation/register");
+
 // Load User model
 const User = require("../../models/User");
 
@@ -16,6 +19,12 @@ router.get("/test", (req, res) => res.json({ msg: "Users works2" }));
 
 router.post("/register", (req, res) => {
   User.findOne({ email: req.body.email }).then(user => {
+    const { errors, isValid } = validateRegister(req.body);
+
+    // Check Validation
+    if (!isValid) {
+      return res.status(400).json(errors);
+    }
     if (user) {
       errors.email =
         "ایمیل مورد نظر قبلا ثبت شده است لطفا ایمیل دیگری را انتخاب فرمایید.";
