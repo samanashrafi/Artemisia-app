@@ -15,6 +15,12 @@ const UserSchema = new Schema({
     type: String,
     required: true
   },
+  mobile: {
+    type: Number
+  },
+  address: {
+    type: String
+  },
   avatar: {
     type: String
   },
