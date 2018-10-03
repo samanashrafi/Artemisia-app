@@ -122,9 +122,25 @@ router.get(
       id: req.user.id,
       name: req.user.name,
       email: req.user.email,
-      email: req.user.mobile
+      mobile: req.user.mobile
     });
   }
 );
+
+// @route   GET api/users/all
+// @desc    Return all user
+// @access  Private
+
+router.get("/all", (req, res) => {
+  User.find()
+    .populate("user", ["name", "email", "mobile", "avatar"])
+    .then(users => {
+      if (!users) {
+        return res.status(404).json({ msg: "هیچ کاربری وجود ندارد." });
+      }
+      res.json(users);
+    })
+    .catch(err => res.status(404).json({ users: "هیچ کاربری وجود ندارد." }));
+});
 
 module.exports = router;
