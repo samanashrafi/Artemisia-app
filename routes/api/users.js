@@ -15,7 +15,7 @@ const User = require("../../models/User");
 // @route   GET api/users/test
 // @desc    Tests users route
 // @access  Public
-router.get("/test", (req, res) => res.json({ msg: "Users works2" }));
+router.get("/test", (req, res) => res.json({ msg: "Users works3" }));
 
 // @route   GET api/users/register
 // @desc    Register user
@@ -114,6 +114,7 @@ router.post("/login", (req, res) => {
 // @route   GET api/users/current
 // @desc    Return current user
 // @access  Private
+
 router.get(
   "/current",
   passport.authenticate("jwt", { session: false }),
@@ -142,5 +143,38 @@ router.get("/all", (req, res) => {
     })
     .catch(err => res.status(404).json({ users: "هیچ کاربری وجود ندارد." }));
 });
+
+// @route   GET api/users/:user_Id
+// @desc    delete user by Id
+// @access  Private
+router.post("/delete/id", (req, res) => {
+  User.findByIdAndRemove(req.params.id).then(users => {
+    if (!users) {
+      return res.status(404).json({ msg: "هیچ کاربری وجود ندارد." });
+    }
+    res.json({ msg: "کاربر مورد نظر شما با موفقیت حذف شد." });
+  });
+});
+
+// router.delete(
+//   "/delete/:user_id",
+//   // passport.authenticate('jwt', { session: false }),
+//   (req, res) => {
+//     User.findOne({ user: req.user.id })
+//       .then(user => {
+//         // Get remove index
+//         const removeIndex = user.education
+//           .map(item => item.id)
+//           .indexOf(req.params.user_id);
+
+//         // Splice out of array
+//         user.splice(removeIndex, 1);
+
+//         // Save
+//         user.save().then(user => res.json(user));
+//       })
+//       .catch(err => res.status(404).json(err));
+//   }
+// );
 
 module.exports = router;
