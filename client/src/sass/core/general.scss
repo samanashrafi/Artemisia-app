@@ -1,0 +1,41 @@
+body {
+  font-family: $font-family;
+  color: $color-artemisia-gray;
+  background: #eee;
+  font-size: 0.9em;
+  direction: rtl;
+}
+
+a {
+  text-decoration: none;
+}
+
+input,
+textarea,
+select,
+option {
+  font-family: $font-family;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: darkgray;
+}
+
+.color-primary {
+  color: $color-primary;
+}
+.color-secondary {
+  color: $color-secondary;
+}
+
+.container-center {
+  width: 80%;
+  margin: auto;
+  display: table;
+}
+
+.container-width {
+  width: 100%;
+  float: right;
+}

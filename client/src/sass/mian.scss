@@ -1,0 +1,12 @@
+// reset css in all browsers
+@import "base/rest";
+
+// Core variables and mixins
+@import "core/variables.scss";
+@import "core/mixins.scss";
+@import "core/fonts.scss";
+@import "core/general.scss";
+
+// layout
+@import "layout/header.scss";
+@import "layout/aside..scss"
