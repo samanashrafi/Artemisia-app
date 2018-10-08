@@ -1132,14 +1132,6 @@ $modal-border-color: $color-gray-border;
   }
 }
 
-@mixin animation($str) {
-  -webkit-animation: #{$str};
-  -moz-animation: #{$str};
-  -ms-animation: #{$str};
-  -o-animation: #{$str};
-  animation: #{$str};
-}
-
 /*
 @include keyframes(slide-down) {
   0% { opacity: 1; }
@@ -1166,9 +1158,9 @@ $modal-border-color: $color-gray-border;
   $underdesktop: "(max-width: 991px)";
   $tablet: "(min-width: 767px)";
   $undertablet: "(max-width: 767px)";
-  $mobile-tablet: "(min-width: 415px) and (max-width: 767px)";
-  $uppermobile: "(min-width: 415px)";
-  $mobile: "(max-width: 414px)";
+  $mobile-tablet: "(min-width: 426px) and (max-width: 767px)";
+  $uppermobile: "(min-width: 425px)";
+  $mobile: "(max-width: 425px)";
   $smallmobile: "(max-width: 320px)";
 
   @if $point == superlarge {
@@ -1224,6 +1216,14 @@ $modal-border-color: $color-gray-border;
   -ms-transition: all #{$str};
   -o-transition: all #{$str};
   transition: all #{$str};
+}
+
+@mixin animation($str) {
+  -webkit-animation: #{$str};
+  -moz-animation: #{$str};
+  -ms-animation: #{$str};
+  -o-animation: #{$str};
+  animation: #{$str};
 }
 
 @mixin translate3d($param1, $param2, $param3) {

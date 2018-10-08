@@ -33,6 +33,17 @@ textarea::placeholder {
   width: 80%;
   margin: auto;
   display: table;
+  @include bp(mobile) {
+    width: 95%;
+  }
+
+  @include bp(undertablet) {
+    width: 90%;
+  }
+
+  @include bp(underdesktop) {
+    width: 90%;
+  }
 }
 
 .container-width {

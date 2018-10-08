@@ -8,17 +8,48 @@ header {
   padding: 10px 20px;
   // width: calc(100% - #{$aside-padding} - 40px);
   @include transition(0.3s);
+
+  @include bp(underdesktop) {
+    padding: 10px 0;
+  }
+
+  .side-menu {
+    float: left;
+    font-size: 1.3em;
+    padding: 8px;
+    color: #ccc;
+    margin: 1px 0 0 0;
+
+    @include bp(desktop) {
+      display: none;
+    }
+  }
+
   .user-login {
     position: relative;
     overflow: hidden;
     margin: 8px 0 0 0;
     float: left;
     cursor: pointer;
+    @include bp(undertablet) {
+      margin-top: 0px;
+    }
+    @include bp(tablet) {
+      margin-top: 0px;
+    }
+    @include bp(upper1090) {
+      margin-top: 8px;
+    }
+    .mobile {
+      float: left;
+      font-size: 1.3em;
+      padding: 8px;
+      color: #ccc;
+    }
     span {
-      @include transition(0.3s);
       border: 1px solid $color-primary;
       float: right;
-
+      @include transition(0.3s);
       &:nth-child(1),
       &:nth-child(3) {
         //
@@ -26,6 +57,9 @@ header {
         min-width: 60px;
         text-align: center;
         font-weight: normal;
+        @include bp(mobile) {
+          padding: 8px;
+        }
       }
       &:nth-child(1) {
         border-left: none;
@@ -53,7 +87,6 @@ header {
         background: #fff;
         width: 9px;
         right: 77px;
-
         height: 60px;
         -ms-transform: rotate(20deg); /* IE 9 */
         -webkit-transform: rotate(20deg); /* Safari */
@@ -83,7 +116,21 @@ header {
     overflow: hidden;
     @include borderRadius(5px);
 
-    &::before {
+    // @include bp(undertablet) {
+    //   margin: auto;
+    //   margin-top: 4px;
+    //   float: inherit;
+    // }
+
+    @include bp(underdesktop) {
+      float: left;
+      margin: 0px;
+      background: #fff;
+      min-width: inherit;
+      width: initial;
+    }
+
+    .break-line {
       border: none;
       content: "";
       position: absolute;
@@ -98,6 +145,10 @@ header {
       -ms-transform: rotate(20deg); /* IE 9 */
       -webkit-transform: rotate(20deg); /* Safari */
       transform: rotate(20deg);
+
+      @include bp(undertablet) {
+        display: none;
+      }
     }
     // .focus {
     //   border-right: 1px solid $color-primary;
@@ -116,6 +167,12 @@ header {
       cursor: pointer;
       @include borderRadiusAll(5px, 0px, 0px, 5px);
       @include transition(0.3s);
+      @include bp(undertablet) {
+        position: static;
+        float: left;
+        padding: 6px 10px;
+      }
+
       &:hover {
         color: $color-primary;
       }
@@ -129,6 +186,10 @@ header {
       background: #f7f7f7;
       border: 1px solid #ddd;
       min-width: 320px;
+      @include bp(underdesktop) {
+        display: none;
+      }
+
       &.search:hover {
         // border: 1px solid red;
 
@@ -144,14 +205,22 @@ header {
     .img {
       width: 50px;
       height: 50px;
-      @include borderRadius(100px);
-
       float: right;
       background: #eee;
+      @include borderRadius(100px);
+
+      @include bp(underdesktop) {
+        width: 40px;
+        height: 40px;
+      }
     }
     h1 {
       margin: 0 10px 0 0;
       float: right;
+      @include bp(mobile) {
+        display: none;
+      }
+
       span {
         clear: both;
         float: right;
@@ -161,6 +230,7 @@ header {
         &:nth-child(2) {
           color: darkgray;
           margin: 5px 0 0 0;
+          font-size: 0.8em;
         }
       }
     }

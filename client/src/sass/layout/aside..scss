@@ -11,10 +11,19 @@ aside {
   @include transition(0.3s);
   @include translate3d(0, 0, 0);
 
+  @include bp(underdesktop) {
+    @include translate3d($aside-padding, 0, 0);
+    height: calc(100% - 62px);
+  }
+
+  &.active {
+    @include translate3d($aside-padding, 0, 0);
+  }
+  &.active-mobile {
+    @include translate3d(0, 0, 0);
+  }
   .menu {
     padding: 20px;
-
-    @include container-width;
     li {
       font-weight: 100;
       font-size: 1.1em;
