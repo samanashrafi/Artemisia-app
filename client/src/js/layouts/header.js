@@ -1,28 +1,88 @@
 import React, { Component } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch, faHome } from "@fortawesome/free-solid-svg-icons";
+import {
+  faSearch,
+  faUser,
+  faHome,
+  faBars,
+  faNewspaper,
+  faChartLine,
+  faEdit,
+  faEnvelope
+} from "@fortawesome/free-solid-svg-icons";
 import {
   faFacebookF,
   faInstagram,
   faTelegramPlane
 } from "@fortawesome/free-brands-svg-icons";
-
+import checkDevices from "../components/helpers";
+let menu = 0;
 class header extends Component {
   constructor(props) {
     super(props);
+    // this.state = {
+    //   menu: 0
+    // };
 
     this.onFocus = this.onFocus.bind(this);
+    this.onClick = this.activeAside.bind(this);
   }
 
+  activeAside() {
+    var el = document.querySelector("aside");
+    // this.setState({ menu: 1 });
+    if (checkDevices.isMobile()) {
+      if (menu == 1) {
+        el.classList.remove("active-mobile");
+        menu = 0;
+      } else {
+        el.classList.add("active-mobile");
+        menu = 1;
+      }
+    } else {
+      if (menu == 0) {
+        el.classList.add("active");
+        menu = 1;
+      } else {
+        el.classList.remove("active");
+        menu = 0;
+      }
+    }
+  }
   onFocus() {
     // var el = document.getElementById("break");
     // el.classList.add("focus");
   }
   render() {
+    let elLogin;
+    if (checkDevices.isMobile()) {
+      elLogin = (
+        <div className="user-login">
+          <i className="mobile">
+            <FontAwesomeIcon icon={faUser} />
+          </i>
+        </div>
+      );
+    } else {
+      elLogin = (
+        <div className="user-login">
+          <span>ثبت نام</span>
+          <span />
+          <span>ورود</span>
+        </div>
+      );
+    }
     return (
       <div>
         <header>
           <div className="container-center">
+            <div
+              id="side-menu"
+              className="side-menu"
+              onClick={this.activeAside}
+            >
+              <FontAwesomeIcon icon={faBars} />
+            </div>
             <div className="logo">
               <div className="img" />
               <h1>
@@ -30,11 +90,7 @@ class header extends Component {
                 <span>در دنیا خودرو بروز باشید.</span>
               </h1>
             </div>
-            <div className="user-login">
-              <span>ثبت نام</span>
-              <span />
-              <span>ورود</span>
-            </div>
+            {elLogin}
             <div className="search">
               <i>
                 <FontAwesomeIcon icon={faSearch} />
@@ -52,7 +108,7 @@ class header extends Component {
         <aside>
           <ul className="menu">
             <li>
-              <a href="/">
+              <a id="home" href="/">
                 <span>
                   <FontAwesomeIcon icon={faHome} />
                 </span>
@@ -60,23 +116,23 @@ class header extends Component {
               </a>
             </li>
             <li>
-              <a href="/">
+              <a id="news" href="/">
                 <span>
-                  <FontAwesomeIcon icon={faHome} />
+                  <FontAwesomeIcon icon={faNewspaper} />
                 </span>
                 اخبار
               </a>
             </li>
             <li>
-              <a href="/">
+              <a id="review" href="/">
                 <span>
-                  <FontAwesomeIcon icon={faHome} />
+                  <FontAwesomeIcon icon={faChartLine} />
                 </span>
                 نقد و بررسی
               </a>
             </li>
             <li>
-              <a href="/">
+              <a id="facts" href="/">
                 <span>
                   <FontAwesomeIcon icon={faHome} />
                 </span>
@@ -84,17 +140,17 @@ class header extends Component {
               </a>
             </li>
             <li>
-              <a href="/">
+              <a id="aboutme" href="/">
                 <span>
-                  <FontAwesomeIcon icon={faHome} />
+                  <FontAwesomeIcon icon={faEdit} />
                 </span>
                 درباره ما
               </a>
             </li>
             <li>
-              <a href="/">
+              <a id="contact" href="/">
                 <span>
-                  <FontAwesomeIcon icon={faHome} />
+                  <FontAwesomeIcon icon={faEnvelope} />
                 </span>
                 تماس با ما
               </a>
@@ -102,9 +158,7 @@ class header extends Component {
           </ul>
 
           <div className="social-network">
-            <p className="dec color-secondary">
-              ما را در شبکه های اجتماعی دنبال کنید
-            </p>
+            <p className="dec ">ما را در شبکه های اجتماعی دنبال کنید</p>
 
             <ul>
               <li>
