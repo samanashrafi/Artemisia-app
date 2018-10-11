@@ -119,7 +119,7 @@ class Header extends Component {
               />
             </div>
           </div>
-          <button
+          {/* <button
             type="button"
             className="modalButton"
             onClick={() => this.handleToggleModal()}
@@ -153,7 +153,7 @@ class Header extends Component {
                 mauris vestibulum, pharetra eros nec, feugiat orci.
               </p>
             </div>
-          </Modal>
+          </Modal> */}
         </header>
         <aside>
           <ul className="menu">
