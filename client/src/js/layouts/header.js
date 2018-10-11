@@ -16,13 +16,18 @@ import {
   faTelegramPlane
 } from "@fortawesome/free-brands-svg-icons";
 import checkDevices from "../components/helpers";
+
+import PropTypes from "prop-types";
+import SimpleModalLauncher from "./SimpleModalLauncher";
+import Modal from "../components/model";
+
 let menu = 0;
-class header extends Component {
+class Header extends Component {
   constructor(props) {
     super(props);
-    // this.state = {
-    //   menu: 0
-    // };
+    this.state = {
+      showModal: false
+    };
 
     this.onFocus = this.onFocus.bind(this);
     this.onClick = this.activeAside.bind(this);
@@ -53,8 +58,12 @@ class header extends Component {
     // var el = document.getElementById("break");
     // el.classList.add("focus");
   }
+
+  handleToggleModal() {
+    this.setState({ showModal: true });
+  }
   render() {
-    let elLogin;
+    let elLogin, showMy;
     if (checkDevices.isMobile()) {
       elLogin = (
         <div className="user-login">
@@ -72,6 +81,12 @@ class header extends Component {
         </div>
       );
     }
+
+    // if (this.state.showModal) {
+    //   showMy = (
+
+    //   );
+    // }
     return (
       <div>
         <header>
@@ -104,6 +119,41 @@ class header extends Component {
               />
             </div>
           </div>
+          <button
+            type="button"
+            className="modalButton"
+            onClick={() => this.handleToggleModal()}
+          >
+            show modal
+          </button>
+          <SimpleModalLauncher buttonLabel="Open text modal">
+            <div className="textModal">
+              <h2>Lorem ipsum dolor sit amet</h2>
+              <p>
+                Nullam tincidunt, nisl eget vestibulum rhoncus, elit nisi
+                faucibus quam, sollicitudin posuere massa lacus cursus ligula.
+                Quisque vel turpis a quam posuere lobortis. Aenean risus nunc,
+                pretium eu massa tincidunt, dignissim tincidunt arcu. Integer et
+                mauris vestibulum, pharetra eros nec, feugiat orci.
+              </p>
+            </div>
+          </SimpleModalLauncher>
+          <Modal
+            buttonLabel="Open text modal"
+            onCloseRequest={() => this.handleToggleModal()}
+            showModal={this.state.showModal}
+          >
+            <div className="textModal">
+              <h2>Lorem ipsum dolor sit amet</h2>
+              <p>
+                Nullam tincidunt, nisl eget vestibulum rhoncus, elit nisi
+                faucibus quam, sollicitudin posuere massa lacus cursus ligula.
+                Quisque vel turpis a quam posuere lobortis. Aenean risus nunc,
+                pretium eu massa tincidunt, dignissim tincidunt arcu. Integer et
+                mauris vestibulum, pharetra eros nec, feugiat orci.
+              </p>
+            </div>
+          </Modal>
         </header>
         <aside>
           <ul className="menu">
@@ -183,5 +233,9 @@ class header extends Component {
     );
   }
 }
+Header.propTypes = {
+  sheet: PropTypes.object,
+  classes: PropTypes.object
+};
 
-export default header;
+export default Header;
