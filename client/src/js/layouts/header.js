@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faUser, faBars } from "@fortawesome/free-solid-svg-icons";
 
@@ -62,9 +63,13 @@ class Header extends Component {
     } else {
       elLogin = (
         <div className="user-login">
-          <span>ثبت نام</span>
-          <span />
-          <span>ورود</span>
+          <Link to="/register">
+            <span>ثبت نام</span>
+          </Link>
+          <a />
+          <Link to="/login">
+            <span> ورود</span>
+          </Link>
         </div>
       );
     }
@@ -75,38 +80,33 @@ class Header extends Component {
     //   );
     // }
     return (
-      <div>
-        <header>
-          <div className="container-center">
-            <div
-              id="side-menu"
-              className="side-menu"
-              onClick={this.activeAside}
-            >
-              <FontAwesomeIcon icon={faBars} />
-            </div>
-            <div className="logo">
-              <div className="img" />
-              <h1>
-                <span className="color-primary">تیکاف</span>
-                <span>در دنیا خودرو بروز باشید.</span>
-              </h1>
-            </div>
-            {elLogin}
-            <div className="search">
-              <i>
-                <FontAwesomeIcon icon={faSearch} />
-              </i>
-              <span id="break" className="break-line" />
-              <input
-                name="txtSearch"
-                type="test"
-                placeholder="جستجو کنید..."
-                onFocus={this.onFocus()}
-              />
-            </div>
+      <header>
+        <div className="container-center">
+          <div id="side-menu" className="side-menu" onClick={this.activeAside}>
+            <FontAwesomeIcon icon={faBars} />
           </div>
-          {/* <button
+          <div className="logo">
+            <div className="img" />
+            <h1>
+              <span className="color-primary">تیکاف</span>
+              <span>در دنیا خودرو بروز باشید.</span>
+            </h1>
+          </div>
+          {elLogin}
+          <div className="search">
+            <i>
+              <FontAwesomeIcon icon={faSearch} />
+            </i>
+            <span id="break" className="break-line" />
+            <input
+              name="txtSearch"
+              type="test"
+              placeholder="جستجو کنید..."
+              onFocus={this.onFocus()}
+            />
+          </div>
+        </div>
+        {/* <button
             type="button"
             className="modalButton"
             onClick={() => this.handleToggleModal()}
@@ -141,8 +141,7 @@ class Header extends Component {
               </p>
             </div>
           </Modal> */}
-        </header>
-      </div>
+      </header>
     );
   }
 }

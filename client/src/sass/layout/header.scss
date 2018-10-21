@@ -46,7 +46,7 @@ header {
       padding: 8px;
       color: #ccc;
     }
-    span {
+    a {
       border: 1px solid $color-primary;
       float: right;
       @include transition(0.3s);

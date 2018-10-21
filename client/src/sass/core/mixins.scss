@@ -1237,6 +1237,10 @@ $modal-border-color: $color-gray-border;
   width: 100%;
 }
 
+@mixin containerWidth {
+  float: right;
+  width: 100%;
+}
 // Border Radius
 
 @mixin borderRadius($radius) {

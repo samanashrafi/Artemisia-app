@@ -1,0 +1,8 @@
+.btn {
+  background: $color-primary;
+  padding: 8px 30px;
+  color: white;
+  outline: none;
+  border: none;
+  @include borderRadius(5px);
+}

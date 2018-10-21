@@ -1,3 +1,5 @@
+// html tag
+
 body {
   font-family: $font-family;
   color: $color-artemisia-gray;
@@ -29,6 +31,8 @@ textarea::placeholder {
   color: $color-secondary;
 }
 
+//containers
+
 .container-center {
   width: 80%;
   margin: auto;
@@ -49,4 +53,71 @@ textarea::placeholder {
 .container-width {
   width: 100%;
   float: right;
+}
+
+.container-main {
+  // width: calc(100% - #{$aside-padding} - 60px);
+
+  margin: 90px #{$container-main} 30px 0px;
+  float: right;
+  width: calc(100% - #{$aside-padding} - 60px);
+
+  @include bp(underdesktop) {
+    margin: 90px 30px 30px 0px;
+
+    width: calc(100% - 60px);
+  }
+}
+
+// from & input
+
+.form-group {
+  position: relative;
+  background: #e7e7e7;
+  overflow: hidden;
+  clear: both;
+  margin-bottom: 25px;
+  @include borderRadius(5px);
+  .break-line {
+    border: none;
+    content: "";
+    position: absolute;
+    top: -10px;
+    border-right: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+    background: #fff;
+    width: 9px;
+    right: 50px;
+
+    height: 60px;
+    -ms-transform: rotate(20deg); /* IE 9 */
+    -webkit-transform: rotate(20deg); /* Safari */
+    transform: rotate(20deg);
+  }
+
+  i {
+    position: absolute;
+    overflow: hidden;
+    top: 1px;
+    right: 10xp;
+    font-size: 1.3em;
+    padding: 9px 15px;
+    color: #ccc;
+    float: left;
+    float: right;
+    cursor: pointer;
+    @include borderRadiusAll(5px, 0px, 0px, 5px);
+    @include transition(0.3s);
+  }
+  .form-control {
+    padding: 7px 85px 7px 15px;
+    outline: none;
+    overflow: hidden;
+    background: #f7f7f7;
+    border: 1px solid #ddd;
+    min-width: 320px;
+    @include transition(0.5s);
+    @include borderRadius(5px);
+    @include containerWidth();
+  }
 }

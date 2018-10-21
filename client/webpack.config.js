@@ -1,7 +1,7 @@
 "use strict";
 const path = require("path");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
-const CleanWebpackPlugin = require("clean-webpack-plugin");
+// const CleanWebpackPlugin = require("clean-webpack-plugin");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 const devMode = process.env.NODE_ENV !== "production";
@@ -12,7 +12,9 @@ module.exports = {
     filename: "bundle.js",
     path: path.resolve(__dirname, "dist")
   },
-  mode: devMode ? "development" : "production",
+  // mode: devMode ? "development" : "production",
+  mode: "production",
+
   devtool: "inline-source-map",
   module: {
     rules: [
@@ -59,12 +61,15 @@ module.exports = {
       }
     ]
   },
+  stats: {
+    children: false
+  },
   plugins: [
-    new CleanWebpackPlugin(["dist"]),
-    new ExtractTextPlugin({ filename: "style.css" }),
-    new HtmlWebPackPlugin({
-      template: "./src/index.html",
-      filename: "./index.html"
-    })
+    // new CleanWebpackPlugin(["dist"]),
+    // new ExtractTextPlugin({ filename: "style.css" }),
+    // new HtmlWebPackPlugin({
+    //   template: "./src/index.html",
+    //   filename: "index.html"
+    // })
   ]
 };
