@@ -48,4 +48,18 @@ export const isEmpty = value =>
 //     menu = 0;
 //   }
 // };
+
+export const addClassById = (id,value) => {
+  let el = document.getElementById(id);
+  el.classList.add(value);
+};
+
+export const removeClassById = (id,value) => {
+  debugger
+  let el = document.getElementById(id);
+
+  el.classList.remove(value);
+};
+
+
 export default checkDevices;
