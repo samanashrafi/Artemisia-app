@@ -1,21 +1,14 @@
-"use strict";
-const path = require("path");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
-// const CleanWebpackPlugin = require("clean-webpack-plugin");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
-const devMode = process.env.NODE_ENV !== "production";
+const path = require("path");
 
 module.exports = {
   entry: "./src/index.js",
   output: {
-    filename: "bundle.js",
-    path: path.resolve(__dirname, "dist")
+    path: path.resolve("dist"),
+    filename: "bundled.js"
   },
-  // mode: devMode ? "development" : "production",
-  mode: "production",
-
-  devtool: "inline-source-map",
   module: {
     rules: [
       {
@@ -24,14 +17,6 @@ module.exports = {
         use: {
           loader: "babel-loader"
         }
-      },
-      {
-        test: /\.html$/,
-        use: [
-          {
-            loader: "html-loader"
-          }
-        ]
       },
       {
         test: /\.css$/,
@@ -61,15 +46,15 @@ module.exports = {
       }
     ]
   },
-  stats: {
-    children: false
+  devServer: {
+    historyApiFallback: true
   },
+
   plugins: [
-    // new CleanWebpackPlugin(["dist"]),
-    // new ExtractTextPlugin({ filename: "style.css" }),
-    // new HtmlWebPackPlugin({
-    //   template: "./src/index.html",
-    //   filename: "index.html"
-    // })
+    new ExtractTextPlugin({ filename: "style.css" }),
+    new HtmlWebPackPlugin({
+      template: "./src/index.html",
+      filename: "./index.html"
+    })
   ]
 };
