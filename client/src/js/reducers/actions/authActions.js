@@ -4,18 +4,24 @@ import jwt_decode from "jwt-decode";
 
 import { GET_ERRORS, SET_CURRENT_USER } from "./types";
 
+import { addClassById, removeClassById } from "../../components/helpers";
+
 // User Register
 
 export const registerUser = (userData, history) => dispatch => {
   axios
     .post("/api/users/register", userData)
-    .then(res => history.push("/login"))
-    .catch(err =>
+    .then(() => {
+      addClassById("btn-register", "clicked");
+      history.push("/login");
+    })
+    .catch(err => {
+      removeClassById("btn-register", "clicked");
       dispatch({
         type: GET_ERRORS,
         payload: err.response.data
-      })
-    );
+      });
+    });
 };
 
 //Login - Get User Token

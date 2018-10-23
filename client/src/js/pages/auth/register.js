@@ -44,7 +44,6 @@ class Register extends Component {
   }
   onSubmit(e) {
     e.preventDefault();
-    debugger;
     const newUser = {
       name: this.state.name,
       email: this.state.email,
@@ -99,14 +98,13 @@ class Register extends Component {
               icon={faRedoAlt}
             />
 
-            <button type="sumit" className="btn btn-info btn-block mt-4">
-              ثبت
+            <button id="btn-register" type="sumit" className="btn">
+              <span>ثبت</span>
+              <div className="spinner">
+                <div className="double-bounce1" />
+                <div className="double-bounce2" />
+              </div>
             </button>
-            {/* <input
-              type="submit"
-              placeholder=" "
-             
-            /> */}
           </form>
         </div>
       </div>
@@ -116,8 +114,8 @@ class Register extends Component {
 
 Register.propTypes = {
   registerUser: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired
-  // errors: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({

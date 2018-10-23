@@ -4,5 +4,71 @@
   color: white;
   outline: none;
   border: none;
+  display: table;
+  position: relative;
+  margin: auto;
+  cursor: pointer;
   @include borderRadius(5px);
+
+  &.clicked {
+    span {
+      display: none;
+    }
+    .spinner {
+      display: block;
+    }
+  }
+
+  .spinner {
+    width: 25px;
+    height: 25px;
+    position: relative;
+    // top: 8px;
+    display: table;
+    margin: 0 auto;
+    // opacity: 0;
+    display: none;
+  }
+
+  .double-bounce1,
+  .double-bounce2 {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: #fff;
+    opacity: 0.6;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    -webkit-animation: sk-bounce 2s infinite ease-in-out;
+    animation: sk-bounce 2s infinite ease-in-out;
+  }
+
+  .double-bounce2 {
+    -webkit-animation-delay: -1s;
+    animation-delay: -1s;
+  }
+
+  @-webkit-keyframes sk-bounce {
+    0%,
+    100% {
+      -webkit-transform: scale(0);
+    }
+    50% {
+      -webkit-transform: scale(1);
+    }
+  }
+
+  @keyframes sk-bounce {
+    0%,
+    100% {
+      transform: scale(0);
+      -webkit-transform: scale(0);
+    }
+    50% {
+      transform: scale(1);
+      -webkit-transform: scale(1);
+    }
+  }
 }
