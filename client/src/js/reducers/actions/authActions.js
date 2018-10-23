@@ -30,6 +30,8 @@ export const loginUser = userData => dispatch => {
   axios
     .post("/api/users/login", userData)
     .then(res => {
+      addClassById("btn-login", "clicked");
+
       // save to localStroge
       const { token } = res.data;
       //set token to Is
@@ -41,12 +43,13 @@ export const loginUser = userData => dispatch => {
       // set current user
       dispatch(setCurrentUser(decoded));
     })
-    .catch(err =>
+    .catch(err => {
+      removeClassById("btn-login", "clicked");
       dispatch({
         type: GET_ERRORS,
         payload: err.response.data
-      })
-    );
+      });
+    });
 };
 
 // Set  Logged in User

@@ -1,0 +1,24 @@
+.login {
+  position: relative;
+
+  .center-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 50%;
+    padding: 30px;
+    background-color: white;
+    opacity: 1;
+    overflow: hidden;
+    transform: translate(-50%, 10%);
+    @include borderRadius(5px);
+    @include box-shadow(0 0 14px 3px #d8d8d8);
+
+    h2 {
+      text-align: center;
+      display: block;
+      color: $color-primary;
+      margin-bottom: 25px;
+    }
+  }
+}
