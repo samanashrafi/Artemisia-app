@@ -55,9 +55,7 @@ export const addClassById = (id,value) => {
 };
 
 export const removeClassById = (id,value) => {
-  debugger
   let el = document.getElementById(id);
-
   el.classList.remove(value);
 };
 
