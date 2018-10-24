@@ -9,7 +9,7 @@ module.exports = {
   entry: "./src/index.js",
   output: {
     path: path.resolve("dist"),
-    filename: "bundled.js"
+    filename: "app.js"
   },
   module: {
     rules: [
