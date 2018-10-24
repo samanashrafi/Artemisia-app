@@ -1,5 +1,4 @@
-
-'use strict'
+"use strict";
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
@@ -49,9 +48,13 @@ module.exports = {
     ]
   },
   devServer: {
-    historyApiFallback: true
+    historyApiFallback: true,
+    port: 3000,
+    open: true,
+    proxy: {
+      "/api": "http://localhost:5000"
+    }
   },
-
   plugins: [
     new ExtractTextPlugin({ filename: "style.css" }),
     new HtmlWebPackPlugin({
