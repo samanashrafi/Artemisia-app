@@ -15,8 +15,8 @@ import Header from "./js/layouts/header";
 import Aside from "./js/layouts/aside";
 
 //pages
-// import Register from "./js/pages/auth/register";
-// import Login from "./js/pages/auth/login";
+import Register from "./js/pages/auth/register";
+import Login from "./js/pages/auth/login";
 
 library.add(faStroopwafel);
 
@@ -37,8 +37,8 @@ class App extends Component {
             <Header />
             <Aside />
             <div className="container-main">
-              {/* <Route exact path="/register" component={Register} />
-              <Route exact path="/login" component={Login} /> */}
+              <Route exact path="/register" component={Register} />
+              <Route exact path="/login" component={Login} />
             </div>
           </div>
         </Router>

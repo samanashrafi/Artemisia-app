@@ -17,22 +17,26 @@ const TextFieldGroup = ({
 }) => {
   return (
     <div className="form-group">
-      <i>
-        <FontAwesomeIcon icon={icon} />
-      </i>
-      <span className="break-line" />
-      <input
-        name={name}
-        type={type}
-        className={classnames("form-control ", {
-          "is-invalid": error
-        })}
-        placeholder={placeholder}
-        icon={icon}
-        value={value}
-        onChange={onChange}
-        disabled={disabled}
-      />
+      <div className="from-input">
+        <i>
+          <FontAwesomeIcon icon={icon} />
+        </i>
+        <span className="break-line" />
+
+        <input
+          name={name}
+          type={type}
+          className={classnames("form-control ", {
+            "is-invalid": error
+          })}
+          placeholder={placeholder}
+          icon={icon}
+          value={value}
+          onChange={onChange}
+          disabled={disabled}
+        />
+      </div>
+
       {/* {info && <small className="form-text text-muted">{info}</small>} */}
       {error && <label className="invalid-feedback">{error}</label>}
     </div>

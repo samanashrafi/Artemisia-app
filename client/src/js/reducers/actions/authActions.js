@@ -9,10 +9,11 @@ import { addClassById, removeClassById } from "../../components/helpers";
 // User Register
 
 export const registerUser = (userData, history) => dispatch => {
+  addClassById("btn-register", "clicked");
+
   axios
     .post("/api/users/register", userData)
     .then(() => {
-      addClassById("btn-register", "clicked");
       history.push("/login");
     })
     .catch(err => {
