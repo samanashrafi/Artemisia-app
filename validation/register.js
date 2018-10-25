@@ -26,7 +26,7 @@ module.exports = function validateRegister(data) {
     errors.email = "ایمیل وارد شده صحیح نمی باشد.";
   }
 
-  if (validator.isEmpty(data.mobile)) {
+  if (!validator.isEmpty(data.mobile)) {
     errors.password = "تلفن همراه الزامی می باشد.";
   }
 
@@ -38,11 +38,8 @@ module.exports = function validateRegister(data) {
     errors.password = "کلمه عبور باید بین حداقل 6 حداکثر 30 حروف باشد.";
   }
 
-  if (validator.isEmpty(data.password2)) {
-    errors.password2 = "کلمه عبور الزامی می باشد";
-  }
 
-  if (!validator.equals(data.password, data.password2)) {
+  if (validator.equals(data.password, data.password2)) {
     errors.password2 = "کلمه عبور وارد شده یکسان نیست";
   }
 
