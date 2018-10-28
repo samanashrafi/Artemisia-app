@@ -14,7 +14,7 @@ header {
   }
 
   .side-menu {
-    float: left;
+    float: right;
     font-size: 1.3em;
     padding: 8px;
     color: #ccc;
@@ -38,7 +38,7 @@ header {
       margin-top: 0px;
     }
     @include bp(upper1090) {
-      margin-top: 8px;
+      margin-top: 11px;
     }
     .mobile {
       float: left;
@@ -107,6 +107,50 @@ header {
     }
   }
 
+  .user-navbar {
+    float: left;
+    border: 1px solid $color-primary;
+    padding: 11px;
+    position: relative;
+    @include borderRadius(5px);
+    cursor: pointer;
+
+    &.active {
+      .list {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+    i {
+      margin: 0 11px 0 0;
+    }
+    .list {
+      position: absolute;
+      top: 37px;
+      right: -1px;
+      background: #fff;
+      width: 100%;
+      opacity: 0;
+      visibility: hidden;
+      border: 1px solid $color-primary;
+      border-top: none;
+      @include transition(0.3s);
+      @include borderRadius(0 0 5px 5px);
+      a {
+        text-align: center;
+        padding: 5px 0;
+        color: #666;
+        border-bottom: 1px solid #eee;
+        &::last-child() {
+          border-bottom: none;
+        }
+        &::hover {
+          color: $color-primary;
+        }
+        @include container-width();
+      }
+    }
+  }
   .search {
     margin: auto;
     margin-top: 8px;
@@ -123,7 +167,7 @@ header {
     // }
 
     @include bp(underdesktop) {
-      float: left;
+      float: right;
       margin: 0px;
       background: #fff;
       min-width: inherit;
@@ -170,7 +214,7 @@ header {
       @include bp(undertablet) {
         position: static;
         float: left;
-        padding: 6px 10px;
+        padding: 8px 10px;
       }
 
       &:hover {
@@ -217,7 +261,7 @@ header {
     h1 {
       margin: 0 10px 0 0;
       float: right;
-      @include bp(mobile) {
+      @include bp(underdesktop) {
         display: none;
       }
 

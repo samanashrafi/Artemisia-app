@@ -28,10 +28,11 @@ export const registerUser = (userData, history) => dispatch => {
 //Login - Get User Token
 
 export const loginUser = userData => dispatch => {
+  addClassById("btn-login", "clicked");
+
   axios
     .post("/api/users/login", userData)
     .then(res => {
-      addClassById("btn-login", "clicked");
 
       // save to localStroge
       const { token } = res.data;
@@ -63,11 +64,12 @@ export const setCurrentUser = decoded => {
 };
 
 //log out user
-export const logoutUser = () => dispatch => {
+export const logoutUser = (history) => dispatch => {
   // Remove token from localStroge
   localStorage.removeItem("jwtToken");
   // remove auth header for future requests
   setAuthToken(false);
   // Set current use to {} will set isAuthenticated tp false
   dispatch(setCurrentUser({}));
+ 
 };

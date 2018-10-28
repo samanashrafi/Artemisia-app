@@ -1,24 +1,30 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch, faUser, faBars } from "@fortawesome/free-solid-svg-icons";
+import {
+  faSearch,
+  faBars,
+  faAngleDown
+} from "@fortawesome/free-solid-svg-icons";
 
 import checkDevices from "../components/helpers";
+import { logoutUser } from "../reducers/actions/authActions";
 
 import PropTypes from "prop-types";
-import SimpleModalLauncher from "./SimpleModalLauncher";
-import Modal from "../components/model";
+import { connect } from "react-redux";
 
 let menu = 0;
 class Header extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      showModal: false
+      navbar: false
     };
 
-    this.onFocus = this.onFocus.bind(this);
     this.onClick = this.activeAside.bind(this);
+    this.onActiveUserNavbar = this.onActiveUserNavbar.bind(this);
+    this.onClick = this.onLogoutClick.bind(this);
   }
 
   activeAside() {
@@ -42,49 +48,63 @@ class Header extends Component {
       }
     }
   }
-  onFocus() {
-    // var el = document.getElementById("break");
-    // el.classList.add("focus");
+
+  onActiveUserNavbar(e) {
+    e.preventDefault();
+    let el = document.getElementsByClassName("user-navbar")[0];
+
+    if (this.state.navbar) {
+      el.classList.remove("active");
+      this.setState({ navbar: false });
+    } else {
+      el.classList.add("active");
+      this.setState({ navbar: true });
+    }
+  }
+  onLogoutClick(e) {
+    e.preventDefault();
+    this.props.logoutUser();
+    //this.props.history.push("/login");
   }
 
   handleToggleModal() {
     this.setState({ showModal: true });
   }
   render() {
-    let elLogin, showMy;
-    if (checkDevices.isMobile()) {
-      elLogin = (
-        <div className="user-login">
-          <i className="mobile">
-            <FontAwesomeIcon icon={faUser} />
-          </i>
-        </div>
-      );
-    } else {
-      elLogin = (
-        <div className="user-login">
+    const { isAuthenticated, user } = this.props.auth;
+    const authLinks = (
+      <div className="user-navbar" onClick={this.onActiveUserNavbar}>
+        {user.name}
+        <i>
+          <FontAwesomeIcon icon={faAngleDown} />
+        </i>
+        <div className="list">
           <Link to="/register">
-            <span>ثبت نام</span>
+            <span> پروفایل </span>
           </Link>
-          <a />
-          <Link to="/login">
-            <span> ورود</span>
-          </Link>
+
+          <a href="" onClick={this.onLogoutClick.bind(this)}>
+            <span> خروج </span>
+          </a>
         </div>
-      );
-    }
+      </div>
+    );
 
-    // if (this.state.showModal) {
-    //   showMy = (
+    const guestLinks = (
+      <div className="user-login">
+        <Link to="/register">
+          <span>ثبت نام</span>
+        </Link>
+        <a />
+        <Link to="/login">
+          <span> ورود</span>
+        </Link>
+      </div>
+    );
 
-    //   );
-    // }
     return (
       <header>
         <div className="container-center">
-          <div id="side-menu" className="side-menu" onClick={this.activeAside}>
-            <FontAwesomeIcon icon={faBars} />
-          </div>
           <div className="logo">
             <div className="img" />
             <h1>
@@ -92,62 +112,33 @@ class Header extends Component {
               <span>در دنیا خودرو بروز باشید.</span>
             </h1>
           </div>
-          {elLogin}
+          <div id="side-menu" className="side-menu" onClick={this.activeAside}>
+            <FontAwesomeIcon icon={faBars} />
+          </div>
+          {isAuthenticated ? authLinks : guestLinks}
+
           <div className="search">
             <i>
               <FontAwesomeIcon icon={faSearch} />
             </i>
             <span id="break" className="break-line" />
-            <input
-              name="txtSearch"
-              type="test"
-              placeholder="جستجو کنید..."
-              onFocus={this.onFocus()}
-            />
+            <input name="txtSearch" type="test" placeholder="جستجو کنید..." />
           </div>
         </div>
-        {/* <button
-            type="button"
-            className="modalButton"
-            onClick={() => this.handleToggleModal()}
-          >
-            show modal
-          </button>
-          <SimpleModalLauncher buttonLabel="Open text modal">
-            <div className="textModal">
-              <h2>Lorem ipsum dolor sit amet</h2>
-              <p>
-                Nullam tincidunt, nisl eget vestibulum rhoncus, elit nisi
-                faucibus quam, sollicitudin posuere massa lacus cursus ligula.
-                Quisque vel turpis a quam posuere lobortis. Aenean risus nunc,
-                pretium eu massa tincidunt, dignissim tincidunt arcu. Integer et
-                mauris vestibulum, pharetra eros nec, feugiat orci.
-              </p>
-            </div>
-          </SimpleModalLauncher>
-          <Modal
-            buttonLabel="Open text modal"
-            onCloseRequest={() => this.handleToggleModal()}
-            showModal={this.state.showModal}
-          >
-            <div className="textModal">
-              <h2>Lorem ipsum dolor sit amet</h2>
-              <p>
-                Nullam tincidunt, nisl eget vestibulum rhoncus, elit nisi
-                faucibus quam, sollicitudin posuere massa lacus cursus ligula.
-                Quisque vel turpis a quam posuere lobortis. Aenean risus nunc,
-                pretium eu massa tincidunt, dignissim tincidunt arcu. Integer et
-                mauris vestibulum, pharetra eros nec, feugiat orci.
-              </p>
-            </div>
-          </Modal> */}
       </header>
     );
   }
 }
 Header.propTypes = {
-  sheet: PropTypes.object,
-  classes: PropTypes.object
+  logoutUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired
 };
 
-export default Header;
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+export default connect(
+  mapStateToProps,
+  { logoutUser }
+)(Header);
