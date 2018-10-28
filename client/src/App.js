@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import jwt_decode from 'jwt-decode';
 import {setAuthToken} from './js/components/setAuthToken';
 import { setCurrentUser, logoutUser } from './js/reducers/actions/authActions';
+import PrivateRoute from "./js/components/PrivateRoute"
 
 // redux config
 import { Provider } from "react-redux";
@@ -23,6 +24,7 @@ import Aside from "./js/layouts/aside";
 //pages
 import Register from "./js/pages/auth/register";
 import Login from "./js/pages/auth/login";
+import Dashboard from "./js/pages/dashborad/dashboard"
 
 library.add(faStroopwafel);
 
@@ -62,9 +64,13 @@ class App extends Component {
           <div className="App">
             <Header />
             <Aside />
+
             <div className="container-main">
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
+              <Switch>
+                <PrivateRoute exact path="/dashboard" component={Dashboard}></PrivateRoute>
+              </Switch>
             </div>
           </div>
         </Router>
