@@ -1,7 +1,6 @@
 "use strict";
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
-
 const path = require("path");
 
 module.exports = {
@@ -9,6 +8,11 @@ module.exports = {
   output: {
     path: path.resolve("dist"),
     filename: "app.js"
+  },
+  resolve: {
+    alias: {
+      src: path.resolve(__dirname, 'src'),
+    }
   },
   module: {
     rules: [
@@ -23,7 +27,6 @@ module.exports = {
         test: /\.css$/,
         use: [
           { loader: "style-loader", options: { sourceMap: false } },
-          // https://github.com/webpack-contrib/css-loader#alias     <-- read this, shorten class Z& import path
           {
             loader: "css-loader",
             options: { minimize: true, sourceMap: false }

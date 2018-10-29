@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
+// 
+import "src/sass/pages/dashboard.scss"
 
-// import "../../../sass"
+
 
  class dashboard extends Component {
   render() {
