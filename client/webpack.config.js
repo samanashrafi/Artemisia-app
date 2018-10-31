@@ -6,12 +6,36 @@ const path = require("path");
 module.exports = {
   entry: "./src/index.js",
   output: {
+    filename: "[name].app.js",
+    chunkFilename: "[name].app.js",
     path: path.resolve("dist"),
     filename: "app.js"
   },
   resolve: {
     alias: {
-      src: path.resolve(__dirname, 'src'),
+      src: path.resolve(__dirname, "src")
+    }
+  },
+  externals: {
+    // 'react': 'react',
+    // 'react-dom': 'react-dom',
+    // 'react-router': 'React-router',
+    // 'axios':'axios',
+    'propTypes':'prop-types'
+  },
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        default: false,
+        // vendor chunk
+        vendor: {
+          // sync + async chunks
+          chunks: "all",
+          name: "vendor",
+          // import file path containing node_modules
+          test: /node_modules/
+        }
+      }
     }
   },
   module: {

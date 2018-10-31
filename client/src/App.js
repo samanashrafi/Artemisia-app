@@ -4,6 +4,7 @@ import jwt_decode from 'jwt-decode';
 import {setAuthToken} from './js/components/setAuthToken';
 import { setCurrentUser, logoutUser } from './js/reducers/actions/authActions';
 import PrivateRoute from "./js/components/PrivateRoute"
+import loadable from "react-loadable"
 
 // redux config
 import { Provider } from "react-redux";
@@ -12,8 +13,9 @@ import store from "./store";
 // set fontawsome
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faStroopwafel } from "@fortawesome/free-solid-svg-icons";
+// import "./sass/mian.scss";
+import "src/sass/mian.scss"
 
-import "./sass/mian.scss";
 
 
 
@@ -22,9 +24,23 @@ import Header from "./js/layouts/header";
 import Aside from "./js/layouts/aside";
 
 //pages
-import Register from "./js/pages/auth/register";
-import Login from "./js/pages/auth/login";
-import Dashboard from "./js/pages/dashborad/dashboard"
+
+const LoadingComponent = () => <h3>please wait...</h3>;
+
+const AsyncRegisterComponent = loadable({
+  loader: () => import("./js/pages/auth/register"),
+  loading: LoadingComponent
+});
+const AsyncLoginComponent = loadable({
+  loader: () => import("./js/pages/auth/Login"),
+  loading: LoadingComponent
+});
+
+const AsyncDashboardComponent = loadable({
+  loader: () => import("./js/pages/dashboard/dashboard"),
+  loading: LoadingComponent
+});
+
 
 library.add(faStroopwafel);
 
@@ -66,10 +82,11 @@ class App extends Component {
             <Aside />
 
             <div className="container-main">
-              <Route exact path="/register" component={Register} />
-              <Route exact path="/login" component={Login} />
+              <Route exact path="/register" component={AsyncRegisterComponent} />
+
+              <Route exact path="/login" component={AsyncLoginComponent} />
               <Switch>
-                <PrivateRoute exact path="/dashboard" component={Dashboard}></PrivateRoute>
+                <PrivateRoute exact path="/dashboard" component={AsyncDashboardComponent}></PrivateRoute>
               </Switch>
             </div>
           </div>
