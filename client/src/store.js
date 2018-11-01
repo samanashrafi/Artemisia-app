@@ -10,7 +10,9 @@ const store = createStore(
   initialState,
   compose(
     applyMiddleware(...middleware),
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    typeof window === 'object' &&
+    typeof window.devToolsExtension !== 'undefined' ? window.devToolsExtension() : f => f
+    // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   )
 );
 
