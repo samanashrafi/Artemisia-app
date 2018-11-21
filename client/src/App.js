@@ -93,8 +93,7 @@ class App extends Component {
 
             <div className="container-main">
               {/* <SwitchUrl /> */}
-              
-             
+
               <Switch>
                 <Route
                   exact
@@ -109,7 +108,11 @@ class App extends Component {
                 <Route exact path="/login" component={AsyncLoginComponent} />
               </Switch>
               <Switch>
-                <Route exact path="/register" component={AsyncRegisterComponent} />
+                <Route
+                  exact
+                  path="/register"
+                  component={AsyncRegisterComponent}
+                />
               </Switch>
               <Switch>
                 <PrivateRoute
