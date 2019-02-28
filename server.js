@@ -1,4 +1,5 @@
 const express = require("express");
+const router = express.Router();
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const passport = require("passport");
@@ -16,10 +17,7 @@ const db = require("./config/keys.js").mongoURL;
 
 // connect to MongoDB
 mongoose
-  .connect(
-    db,
-    { useNewUrlParser: true }
-  )
+  .connect(db, { useNewUrlParser: true })
   .then(() => console.log("mongooDB Connected"))
   .catch(err => console.log(err));
 
@@ -28,7 +26,12 @@ app.use(passport.initialize());
 
 // Password Config
 require("./config/passport")(passport);
-
+app.all("*", function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "PUT, GET, POST, DELETE, OPTIONS");
+  res.header("Access-Control-Allow-Headers", "Content-Type");
+  next();
+});
 //Use Routes
 app.use("/api/users", users);
 
