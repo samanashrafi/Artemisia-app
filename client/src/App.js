@@ -1,5 +1,14 @@
 import React, { Component } from "react";
+<<<<<<< HEAD
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+=======
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect
+} from "react-router-dom";
+>>>>>>> 3ac28080f3778d83ad5c3405a00f1c773d6f6497
 import jwt_decode from "jwt-decode";
 import { setAuthToken } from "./js/components/setAuthToken";
 import { setCurrentUser, logoutUser } from "./js/reducers/actions/authActions";
@@ -19,13 +28,23 @@ import "src/sass/mian.scss";
 //layout
 import Header from "./js/layouts/header";
 import Aside from "./js/layouts/aside";
+import Login from "./js/pages/auth/Login";
 
 //pages
-
+import SwitchUrl from "./js/components/switchUrl";
 const LoadingComponent = () => <h3>please wait...</h3>;
 
 const AsyncRegisterComponent = loadable({
   loader: () => import("./js/pages/auth/register"),
+  loading: LoadingComponent
+});
+const AsyncSelectCityComponent = loadable({
+  loader: () => import("./js/pages/home/SelectCity"),
+  loading: LoadingComponent
+});
+
+const AsyncSelectAdsComponent = loadable({
+  loader: () => import("./js/pages/home/SelectAds"),
   loading: LoadingComponent
 });
 const AsyncLoginComponent = loadable({
@@ -58,7 +77,6 @@ if (localStorage.jwtToken) {
     window.location.href = "/login";
   }
 }
-
 class App extends Component {
   componentDidMount() {
     let windowHight = window.innerHeight - 120;
@@ -66,6 +84,7 @@ class App extends Component {
       .getElementsByClassName("container-main")[0]
       .setAttribute("style", "height:" + windowHight + "px");
   }
+
   render() {
     // elApp.style.color = "blue";
 
@@ -77,14 +96,40 @@ class App extends Component {
             <Aside />
 
             <div className="container-main">
+<<<<<<< HEAD
               <Route
                 exact
                 path="/register"
                 component={AsyncRegisterComponent}
               />
+=======
+              {/* <SwitchUrl /> */}
+>>>>>>> 3ac28080f3778d83ad5c3405a00f1c773d6f6497
 
-              <Route exact path="/login" component={AsyncLoginComponent} />
               <Switch>
+<<<<<<< HEAD
+=======
+                <Route
+                  exact
+                  path="/:name"
+                  component={AsyncSelectAdsComponent}
+                />
+              </Switch>
+              <Switch>
+                <Route exact path="/" component={AsyncSelectCityComponent} />
+              </Switch>
+              <Switch>
+                <Route exact path="/login" component={AsyncLoginComponent} />
+              </Switch>
+              <Switch>
+                <Route
+                  exact
+                  path="/register"
+                  component={AsyncRegisterComponent}
+                />
+              </Switch>
+              <Switch>
+>>>>>>> 3ac28080f3778d83ad5c3405a00f1c773d6f6497
                 <PrivateRoute
                   exact
                   path="/dashboard"

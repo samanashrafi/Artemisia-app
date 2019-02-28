@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import rootReducer from "./js/reducers";
-
+import Button from 'react-bootstrap/lib/Button';
 const initialState = {};
 const middleware = [thunk];
 
