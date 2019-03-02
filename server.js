@@ -7,6 +7,8 @@ const app = express();
 
 // route api
 const users = require("./routes/api/users");
+const cites = require("./routes/api/cites");
+const categories = require("./routes/api/categories");
 
 // body parser mildde ware
 
@@ -34,6 +36,8 @@ app.all("*", function(req, res, next) {
 });
 //Use Routes
 app.use("/api/users", users);
+app.use("/api/cites", cites);
+app.use("/api/categories", categories);
 
 const port = process.env.PORT || 5000;
 
