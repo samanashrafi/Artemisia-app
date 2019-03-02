@@ -37,4 +37,16 @@ router.post("/create", (req, res) => {
   });
 });
 
+router.get("/all", (req, res) => {
+  City.find()
+    .populate("city", ["title", "titleEn"])
+    .then(cites => {
+      if (!cites) {
+        return res.status(400).json({ msg: "هیچ شهری وجود ندارد." });
+      }
+      res.json(cites);
+    })
+    .catch(err => res.status(404).json({ msg: "هیچ شهری وجود ندارد." }));
+});
+
 module.exports = router;
