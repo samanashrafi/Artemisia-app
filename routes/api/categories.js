@@ -6,7 +6,7 @@ const Category = require("../../models/Category");
 
 router.get("/test", (req, res) => res.json({ msg: "Categories works" }));
 
-router.post("create", (req, res) => {
+router.post("/create", (req, res) => {
   Category.findOne({ title: req.body.title }).then(category => {
     const { errors, isValid } = validateCategory(req.body);
     if (!isValid) {
@@ -27,7 +27,7 @@ router.post("create", (req, res) => {
           res.status(200).json({ msg: "دسته بندی مورد نظر با موفقیت ثبت شد." });
         })
         .catch(err =>
-          res.status(400).json({
+          err.status(400).json({
             errosMsg: "سیستم با خطا مواجه شده است لطفا بعدا امتحان فرمایید."
           })
         );
@@ -35,4 +35,17 @@ router.post("create", (req, res) => {
   });
 });
 
+router.get("/all", (req, res) => {
+  Category.find()
+    .populate("category", ["title", "titleEn"])
+    .then(category => {
+      if (!category) {
+        return res.status(404).json({ msg: "هیچ دستبندی وجود ندارد!!!" });
+      }
+      res.json(category);
+    })
+    .catch(err => {
+      return err.status(404).json({ errosMsg: "هیچ دستبندی وجود ندارد!!!" });
+    });
+});
 module.exports = router;
