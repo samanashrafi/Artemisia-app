@@ -48,4 +48,8 @@ router.get("/all", (req, res) => {
       return err.status(404).json({ errosMsg: "هیچ دستبندی وجود ندارد!!!" });
     });
 });
+
+router.delete("/delete", (req, res) => {
+  Category.findByIdAndDelete();
+});
 module.exports = router;
