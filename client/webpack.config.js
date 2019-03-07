@@ -1,7 +1,7 @@
 "use strict";
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const path = require("path");
 
 module.exports = {
@@ -22,7 +22,7 @@ module.exports = {
     // 'react-dom': 'react-dom',
     // 'react-router': 'React-router',
     // 'axios':'axios',
-    'propTypes':'prop-types'
+    propTypes: "prop-types"
   },
   optimization: {
     splitChunks: {
@@ -78,10 +78,7 @@ module.exports = {
   devServer: {
     historyApiFallback: true,
     port: 3000,
-    open: true,
-    proxy: {
-      "/": "http://localhost:3001"
-    }
+    open: true
   },
   plugins: [
     new ExtractTextPlugin({ filename: "style.css" }),

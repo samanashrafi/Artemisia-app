@@ -7,11 +7,9 @@
     "client-install": "npm install --prefix client",
     "start": "node server.js",
     "server": "nodemon server.js",
-    "json": "json-server --watch db.json ",
     "client": "npm start --prefix client",
     "client-build": "npm run-script build --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "pro": "concurrently \"npm run server\" \"npm run client\" \"npm run client-build\""
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "repository": {
     "type": "git",

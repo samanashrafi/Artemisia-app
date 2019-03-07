@@ -79,8 +79,6 @@ class App extends Component {
   }
 
   render() {
-    // elApp.style.color = "blue";
-
     return (
       <Provider store={store}>
         <Router>
@@ -95,13 +93,6 @@ class App extends Component {
                 component={AsyncRegisterComponent}
               />
 
-              <Switch>
-                <Route
-                  exact
-                  path="/:name"
-                  component={AsyncSelectAdsComponent}
-                />
-              </Switch>
               <Switch>
                 <Route exact path="/" component={AsyncSelectCityComponent} />
               </Switch>
