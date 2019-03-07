@@ -1,14 +1,7 @@
 import React, { Component } from "react";
-<<<<<<< HEAD
+
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-=======
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  Redirect
-} from "react-router-dom";
->>>>>>> 3ac28080f3778d83ad5c3405a00f1c773d6f6497
+
 import jwt_decode from "jwt-decode";
 import { setAuthToken } from "./js/components/setAuthToken";
 import { setCurrentUser, logoutUser } from "./js/reducers/actions/authActions";
@@ -96,19 +89,13 @@ class App extends Component {
             <Aside />
 
             <div className="container-main">
-<<<<<<< HEAD
               <Route
                 exact
                 path="/register"
                 component={AsyncRegisterComponent}
               />
-=======
-              {/* <SwitchUrl /> */}
->>>>>>> 3ac28080f3778d83ad5c3405a00f1c773d6f6497
 
               <Switch>
-<<<<<<< HEAD
-=======
                 <Route
                   exact
                   path="/:name"
@@ -129,7 +116,6 @@ class App extends Component {
                 />
               </Switch>
               <Switch>
->>>>>>> 3ac28080f3778d83ad5c3405a00f1c773d6f6497
                 <PrivateRoute
                   exact
                   path="/dashboard"
