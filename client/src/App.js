@@ -21,30 +21,23 @@ import "src/sass/mian.scss";
 //layout
 import Header from "./js/layouts/header";
 import Aside from "./js/layouts/aside";
-import Login from "./js/pages/auth/Login";
 
 //pages
-import SwitchUrl from "./js/components/switchUrl";
 const LoadingComponent = () => <h3>please wait...</h3>;
 
 const AsyncRegisterComponent = loadable({
   loader: () => import("./js/pages/auth/register"),
   loading: LoadingComponent
 });
-const AsyncSelectCityComponent = loadable({
-  loader: () => import("./js/pages/home/SelectCity"),
-  loading: LoadingComponent
-});
 
-const AsyncSelectAdsComponent = loadable({
-  loader: () => import("./js/pages/home/SelectAds"),
-  loading: LoadingComponent
-});
 const AsyncLoginComponent = loadable({
   loader: () => import("./js/pages/auth/Login"),
   loading: LoadingComponent
 });
-
+const Home = loadable({
+  loader: () => import("./js/pages/home/home"),
+  loading: LoadingComponent
+});
 const AsyncDashboardComponent = loadable({
   loader: () => import("./js/pages/dashboard/dashboard"),
   loading: LoadingComponent
@@ -60,7 +53,6 @@ if (localStorage.jwtToken) {
   const decoded = jwt_decode(localStorage.jwtToken);
   // Set user and isAuthenticated
   store.dispatch(setCurrentUser(decoded));
-
   // Check for expired token
   const currentTime = Date.now() / 1000;
   if (decoded.exp < currentTime) {
@@ -87,26 +79,14 @@ class App extends Component {
             <Aside />
 
             <div className="container-main">
-              <Route
-                exact
-                path="/register"
-                component={AsyncRegisterComponent}
-              />
-
-              <Switch>
-                <Route exact path="/" component={AsyncSelectCityComponent} />
-              </Switch>
               <Switch>
                 <Route exact path="/login" component={AsyncLoginComponent} />
-              </Switch>
-              <Switch>
+                <Route exact path="/" component={Home} />
                 <Route
                   exact
                   path="/register"
                   component={AsyncRegisterComponent}
                 />
-              </Switch>
-              <Switch>
                 <PrivateRoute
                   exact
                   path="/dashboard"
