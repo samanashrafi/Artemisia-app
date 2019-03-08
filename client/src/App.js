@@ -1,16 +1,15 @@
 import React, { Component } from "react";
-
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-
 import jwt_decode from "jwt-decode";
 import { setAuthToken } from "./js/components/setAuthToken";
-import { setCurrentUser, logoutUser } from "./js/reducers/actions/authActions";
+// import { setCurrentUser, logoutUser } from "./js/reducers/actions/authActions";
 import PrivateRoute from "./js/components/PrivateRoute";
 import loadable from "react-loadable";
 
 // redux config
 import { Provider } from "react-redux";
-import store from "./store";
+
+import store from "src/redux/store.js";
 
 // set fontawsome
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -25,23 +24,23 @@ import Aside from "./js/layouts/aside";
 //pages
 const LoadingComponent = () => <h3>please wait...</h3>;
 
-const AsyncRegisterComponent = loadable({
-  loader: () => import("./js/pages/auth/register"),
-  loading: LoadingComponent
-});
+// const AsyncRegisterComponent = loadable({
+//   loader: () => import("./js/pages/auth/register"),
+//   loading: LoadingComponent
+// });
 
-const AsyncLoginComponent = loadable({
-  loader: () => import("./js/pages/auth/Login"),
-  loading: LoadingComponent
-});
+// const AsyncLoginComponent = loadable({
+//   loader: () => import("./js/pages/auth/Login"),
+//   loading: LoadingComponent
+// });
 const Home = loadable({
   loader: () => import("./js/pages/home/home"),
   loading: LoadingComponent
 });
-const AsyncDashboardComponent = loadable({
-  loader: () => import("./js/pages/dashboard/dashboard"),
-  loading: LoadingComponent
-});
+// const AsyncDashboardComponent = loadable({
+//   loader: () => import("./js/pages/dashboard/dashboard"),
+//   loading: LoadingComponent
+// });
 
 library.add(faStroopwafel);
 
@@ -64,10 +63,10 @@ if (localStorage.jwtToken) {
 }
 class App extends Component {
   componentDidMount() {
-    let windowHight = window.innerHeight - 120;
-    document
-      .getElementsByClassName("container-main")[0]
-      .setAttribute("style", "height:" + windowHight + "px");
+    // let windowHight = window.innerHeight - 120;
+    // document
+    //   .getElementsByClassName("container-main")[0]
+    //   .setAttribute("style", "height:" + windowHight + "px");
   }
 
   render() {
@@ -80,8 +79,8 @@ class App extends Component {
 
             <div className="container-main">
               <Switch>
-                <Route exact path="/login" component={AsyncLoginComponent} />
                 <Route exact path="/" component={Home} />
+                {/* <Route exact path="/login" component={AsyncLoginComponent} />
                 <Route
                   exact
                   path="/register"
@@ -91,7 +90,7 @@ class App extends Component {
                   exact
                   path="/dashboard"
                   component={AsyncDashboardComponent}
-                />
+                /> */}
               </Switch>
             </div>
           </div>

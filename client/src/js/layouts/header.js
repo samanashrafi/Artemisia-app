@@ -8,8 +8,8 @@ import {
   faAngleDown
 } from "@fortawesome/free-solid-svg-icons";
 
-import checkDevices from "../components/helpers";
-import { logoutUser } from "../reducers/actions/authActions";
+import checkDevices from "src/js/components/helpers";
+import { logoutUser } from "src/redux/reducers/actions/authActions";
 
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
