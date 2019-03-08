@@ -16,7 +16,7 @@ import store from "./store";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faStroopwafel } from "@fortawesome/free-solid-svg-icons";
 // import "./sass/mian.scss";
-import "src/sass/mian.scss";
+import "src/assets/sass/mian.scss";
 
 //layout
 import Header from "./js/layouts/header";

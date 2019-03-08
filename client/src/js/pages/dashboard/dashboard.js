@@ -1,19 +1,11 @@
-import React, { Component } from 'react'
-// 
-import "src/sass/pages/dashboard.scss"
+import React, { Component } from "react";
+//
+import "src/assets/sass/pages/dashboard.scss";
 
-
-
- class dashboard extends Component {
+class dashboard extends Component {
   render() {
-    return (
-      <div className="dashboard-page">
-        داشبورد
-
-      </div>
-    )
+    return <div className="dashboard-page">داشبورد</div>;
   }
 }
-
 
 export default dashboard;
