@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import jwt_decode from "jwt-decode";
-import { setAuthToken } from "./js/components/setAuthToken";
+import { setAuthToken } from "app/components/setAuthToken";
 // import { setCurrentUser, logoutUser } from "./js/reducers/actions/authActions";
-import PrivateRoute from "./js/components/PrivateRoute";
+import PrivateRoute from "app/components/PrivateRoute";
 import loadable from "react-loadable";
 
 // redux config
@@ -18,8 +18,8 @@ import { faStroopwafel } from "@fortawesome/free-solid-svg-icons";
 import "src/assets/sass/mian.scss";
 
 //layout
-import Header from "./js/layouts/header";
-import Aside from "./js/layouts/aside";
+import Header from "app/layouts/header";
+import Aside from "app/layouts/aside";
 
 //pages
 const LoadingComponent = () => <h3>please wait...</h3>;
@@ -34,7 +34,7 @@ const LoadingComponent = () => <h3>please wait...</h3>;
 //   loading: LoadingComponent
 // });
 const Home = loadable({
-  loader: () => import("./js/pages/home/home"),
+  loader: () => import("app/pages/home/home"),
   loading: LoadingComponent
 });
 // const AsyncDashboardComponent = loadable({

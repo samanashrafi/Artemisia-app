@@ -1,10 +1,10 @@
 import axios from "axios";
-import { setAuthToken } from "src/js/components/setAuthToken";
+import { setAuthToken } from "app/components/setAuthToken";
 import jwt_decode from "jwt-decode";
 
 import { GET_ERRORS, SET_CURRENT_USER } from "./types";
 
-import { addClassById, removeClassById } from "src/js/components/helpers";
+import { addClassById, removeClassById } from "app/components/helpers";
 
 // User Register
 
