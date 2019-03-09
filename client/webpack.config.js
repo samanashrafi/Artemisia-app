@@ -5,7 +5,7 @@ const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const path = require("path");
 
 module.exports = {
-  entry: "./src/index.js",
+  entry: "./src/app/index.js",
   output: {
     filename: "[name].app.js",
     chunkFilename: "[name].app.js",
@@ -85,7 +85,7 @@ module.exports = {
   plugins: [
     new ExtractTextPlugin({ filename: "style.css" }),
     new HtmlWebPackPlugin({
-      template: "./src/index.html",
+      template: "./src/app/index.html",
       filename: "./index.html"
     }),
     new UglifyJsPlugin()
