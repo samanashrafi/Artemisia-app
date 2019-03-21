@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { registerUser } from "../../reducers/actions/authActions";
-import TextFieldGroup from "../../components/TextFieldGroup";
+import TextFieldGroup from "app/components/TextFieldGroup";
+import { registerUser } from "src/redux/reducers/actions/authActions";
+
 import {
   faUser,
   faEnvelope,

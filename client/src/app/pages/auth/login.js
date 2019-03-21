@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "Prop-types";
 import { connect } from "react-redux";
-import TextFieldGroup from "../../components/TextFieldGroup";
-import { loginUser } from "../../reducers/actions/authActions";
+import TextFieldGroup from "app/components/TextFieldGroup";
+import { loginUser } from "src/redux/reducers/actions/authActions";
 
 import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
 
