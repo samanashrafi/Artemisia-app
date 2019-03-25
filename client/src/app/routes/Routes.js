@@ -26,16 +26,19 @@ export default {
     {
       path: "/",
       component: Home,
+      layout: "",
       exact: true
     },
     {
       path: "/register",
       component: Register,
+      layout: "main",
       exact: true
     },
     {
       path: "/login",
       component: Login,
+      layout: "empty",
       exact: true
     }
   ],
@@ -43,6 +46,7 @@ export default {
     {
       path: "/dashboard",
       component: Dashboard,
+      layout: "main",
       exact: true
     }
   ]

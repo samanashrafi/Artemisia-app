@@ -4,7 +4,6 @@ import jwt_decode from "jwt-decode";
 import { setAuthToken } from "app/components/setAuthToken";
 // import { setCurrentUser, logoutUser } from "./js/reducers/actions/authActions";
 import PrivateRoute from "app/components/PrivateRoute";
-import loadable from "react-loadable";
 
 // redux config
 import { Provider } from "react-redux";
@@ -16,13 +15,10 @@ import { faStroopwafel } from "@fortawesome/free-solid-svg-icons";
 
 import "src/assets/sass/mian.scss";
 
-//layout
-import Header from "app/layouts/header";
-import Aside from "app/layouts/aside";
+import MainLayout from "app/layouts/MainLayout.js";
 
 //pages
 import routeOptions from "app/routes/Routes.js";
-
 library.add(faStroopwafel);
 
 // Check for token
@@ -48,29 +44,43 @@ class App extends Component {
     return (
       <Provider store={store}>
         <Router>
-          <div className="App">
-            <Header />
-            <Aside />
-            <div className="container-main">
-              <Switch>
-                {routeOptions.router.map(({ path, component, exact }, i) => (
-                  <Route
-                    key={Math.random() + "ROUTE_"}
-                    exact={exact}
-                    path={path}
-                    component={component}
-                  />
-                ))}
-                {routeOptions.private.map(({ path, component, exact }, i) => (
+          <div className="container-main">
+            {/* <Header />
+            <Aside /> */}
+            <Switch>
+              {routeOptions.router.map(item => {
+                // debugger;
+                // if (item.layout == "main") {
+                // <MainLayout />;
+
+                // }
+                return (
+                  <MainLayout />,
+                  (
+                    <Route
+                      key={Math.random() + "ROUTE_"}
+                      exact={item.exact}
+                      path={item.path}
+                      component={item.component}
+                    />
+                  )
+                );
+              })}
+
+              {routeOptions.private.map(item => {
+                if (item.layout !== undefined && item.layout == "main") {
+                  <MainLayout />;
+                }
+                return (
                   <PrivateRoute
                     key={Math.random() + "ROUTE_"}
-                    exact={exact}
-                    path={path}
-                    component={component}
+                    exact={item.exact}
+                    path={item.path}
+                    component={item.component}
                   />
-                ))}
-              </Switch>
-            </div>
+                );
+              })}
+            </Switch>
           </div>
         </Router>
       </Provider>
