@@ -15,8 +15,6 @@ import { faStroopwafel } from "@fortawesome/free-solid-svg-icons";
 
 import "src/assets/sass/mian.scss";
 
-import MainLayout from "app/layouts/MainLayout.js";
-
 //pages
 import routeOptions from "app/routes/Routes.js";
 library.add(faStroopwafel);
@@ -45,32 +43,20 @@ class App extends Component {
       <Provider store={store}>
         <Router>
           <div className="container-main">
-            {/* <Header />
-            <Aside /> */}
             <Switch>
               {routeOptions.router.map(item => {
-                // debugger;
-                // if (item.layout == "main") {
-                // <MainLayout />;
-
-                // }
+                console.log(item);
                 return (
-                  <MainLayout />,
-                  (
-                    <Route
-                      key={Math.random() + "ROUTE_"}
-                      exact={item.exact}
-                      path={item.path}
-                      component={item.component}
-                    />
-                  )
+                  <Route
+                    key={Math.random() + "ROUTE_"}
+                    exact={item.exact}
+                    path={item.path}
+                    component={item.component}
+                  />
                 );
               })}
 
               {routeOptions.private.map(item => {
-                if (item.layout !== undefined && item.layout == "main") {
-                  <MainLayout />;
-                }
                 return (
                   <PrivateRoute
                     key={Math.random() + "ROUTE_"}

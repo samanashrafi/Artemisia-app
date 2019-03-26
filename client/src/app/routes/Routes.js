@@ -26,13 +26,13 @@ export default {
     {
       path: "/",
       component: Home,
-      layout: "",
+      layout: "main",
       exact: true
     },
     {
       path: "/register",
       component: Register,
-      layout: "main",
+      layout: "empty",
       exact: true
     },
     {
