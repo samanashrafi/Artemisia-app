@@ -32,10 +32,10 @@ if (localStorage.jwtToken) {
 }
 class App extends Component {
   componentDidMount() {
-    // let windowHight = window.innerHeight - 120;
-    // document
-    //   .getElementsByClassName("container-main")[0]
-    //   .setAttribute("style", "height:" + windowHight + "px");
+    let windowHight = window.innerHeight - 120;
+    document
+      .getElementsByClassName("container-main")[0]
+      .setAttribute("style", "height:" + windowHight + "px");
   }
 
   render() {
