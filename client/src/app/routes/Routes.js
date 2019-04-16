@@ -12,10 +12,10 @@ const Login = loadable({
   loader: () => import("app/pages/auth/login"),
   loading: LoadingComponent
 });
-const Home = loadable({
-  loader: () => import("app/pages/home"),
-  loading: LoadingComponent
-});
+// const Home = loadable({
+//   loader: () => import("app/pages/home"),
+//   loading: LoadingComponent
+// });
 const Dashboard = loadable({
   loader: () => import("app/pages/dashboard"),
   loading: LoadingComponent
@@ -24,19 +24,18 @@ const Dashboard = loadable({
 export default {
   router: [
     {
-      path: "/",
-      component: Home,
-      layout: "main",
-      exact: true
-    },
-    {
       path: "/register",
+      name: "register",
+      rtl: "ثبت نام",
       component: Register,
-      layout: "empty",
+      layout: "/empty",
       exact: true
     },
     {
       path: "/login",
+      name: "login",
+      rtl: "ورود کاربران",
+      icon: "Login",
       component: Login,
       layout: "empty",
       exact: true
@@ -44,9 +43,12 @@ export default {
   ],
   private: [
     {
-      path: "/dashboard",
+      path: "/",
+      name: "Dashboard",
+      rtlName: "داشبورد",
+      icon: "Dashboard",
       component: Dashboard,
-      layout: "main",
+      layout: "/admin",
       exact: true
     }
   ]
