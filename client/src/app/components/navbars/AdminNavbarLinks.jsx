@@ -15,10 +15,10 @@ import Notifications from "@material-ui/icons/Notifications";
 import Dashboard from "@material-ui/icons/Dashboard";
 import Search from "@material-ui/icons/Search";
 // core components
-import CustomInput from "components/CustomInput/CustomInput.jsx";
-import Button from "components/CustomButtons/Button.jsx";
+import CustomInput from "src/app/components/customInput/CustomInput.jsx";
+import Button from "src/app/components/customButtons/Button.jsx";
 
-import rtlHeaderLinksStyle from "assets/jss/material-dashboard-react/components/rtlHeaderLinksStyle.jsx";
+import headerLinksStyle from "assets/jss/material-dashboard-react/components/headerLinksStyle.jsx";
 
 class HeaderLinks extends React.Component {
   state = {
@@ -47,7 +47,7 @@ class HeaderLinks extends React.Component {
               className: classes.margin + " " + classes.search
             }}
             inputProps={{
-              placeholder: "جستجو...",
+              placeholder: "Search",
               inputProps: {
                 "aria-label": "Search"
               }
@@ -66,7 +66,7 @@ class HeaderLinks extends React.Component {
         >
           <Dashboard className={classes.icons} />
           <Hidden mdUp implementation="css">
-            <p className={classes.linkText}>آمارها</p>
+            <p className={classes.linkText}>Dashboard</p>
           </Hidden>
         </Button>
         <div className={classes.manager}>
@@ -83,10 +83,10 @@ class HeaderLinks extends React.Component {
             className={classes.buttonLink}
           >
             <Notifications className={classes.icons} />
-            <span className={classes.notifications}>۵</span>
+            <span className={classes.notifications}>5</span>
             <Hidden mdUp implementation="css">
               <p onClick={this.handleClick} className={classes.linkText}>
-                اعلان‌ها
+                Notification
               </p>
             </Hidden>
           </Button>
@@ -117,31 +117,31 @@ class HeaderLinks extends React.Component {
                         onClick={this.handleClose}
                         className={classes.dropdownItem}
                       >
-                        محمدرضا به ایمیل شما پاسخ داد
+                        Mike John responded to your email
                       </MenuItem>
                       <MenuItem
                         onClick={this.handleClose}
                         className={classes.dropdownItem}
                       >
-                        شما ۵ وظیفه جدید دارید
+                        You have 5 new tasks
                       </MenuItem>
                       <MenuItem
                         onClick={this.handleClose}
                         className={classes.dropdownItem}
                       >
-                        از حالا شما با علیرضا دوست هستید
+                        You're now friend with Andrew
                       </MenuItem>
                       <MenuItem
                         onClick={this.handleClose}
                         className={classes.dropdownItem}
                       >
-                        اعلان دیگر
+                        Another Notification
                       </MenuItem>
                       <MenuItem
                         onClick={this.handleClose}
                         className={classes.dropdownItem}
                       >
-                        اعلان دیگر
+                        Another One
                       </MenuItem>
                     </MenuList>
                   </ClickAwayListener>
@@ -159,7 +159,7 @@ class HeaderLinks extends React.Component {
         >
           <Person className={classes.icons} />
           <Hidden mdUp implementation="css">
-            <p className={classes.linkText}>حساب کاربری</p>
+            <p className={classes.linkText}>Profile</p>
           </Hidden>
         </Button>
       </div>
@@ -167,4 +167,4 @@ class HeaderLinks extends React.Component {
   }
 }
 
-export default withStyles(rtlHeaderLinksStyle)(HeaderLinks);
+export default withStyles(headerLinksStyle)(HeaderLinks);

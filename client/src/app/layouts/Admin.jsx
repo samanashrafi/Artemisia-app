@@ -8,10 +8,11 @@ import "perfect-scrollbar/css/perfect-scrollbar.css";
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
 // core components
-import Navbar from "src/app/layouts/partials/navbars/Navbar.jsx";
-import Footer from "src/app/layouts/partials/Footer.jsx";
-import Sidebar from "src/app/layouts/partials/Sidebar.jsx";
-import FixedPlugin from "src/app/layouts/partials/FixedPlugin.jsx";
+
+import Navbar from "src/app/components/navbars/Navbar.jsx";
+import Footer from "src/app/components/footer/Footer.jsx";
+import Sidebar from "src/app/components/sidebar/Sidebar.jsx";
+import FixedPlugin from "src/app/components/fixedPlugin/FixedPlugin.jsx";
 
 import routes from "src/app/routes/Routes.js";
 
@@ -23,7 +24,7 @@ import logo from "assets/img/reactlogo.png";
 const switchRoutes = (
   <Switch>
     {routes.router.map((prop, key) => {
-      if (prop.layout === "/Admin") {
+      if (prop.layout === "/admin") {
         return (
           <Route
             path={prop.layout + prop.path}
@@ -119,7 +120,7 @@ class Admin extends React.Component {
             <div className={classes.map}>{switchRoutes}</div>
           )}
           {this.getRoute() ? <Footer /> : null}
-          <FixedPlugin
+          {/* <FixedPlugin
             handleImageClick={this.handleImageClick}
             handleColorClick={this.handleColorClick}
             bgColor={this.state["color"]}
@@ -127,7 +128,7 @@ class Admin extends React.Component {
             handleFixedClick={this.handleFixedClick}
             fixedClasses={this.state.fixedClasses}
             rtlActive
-          />
+          /> */}
         </div>
       </div>
     );

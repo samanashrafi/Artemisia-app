@@ -6,8 +6,8 @@ import {
   setCurrentUser,
   logoutUser
 } from "src/redux/reducers/actions/authActions";
-import PrivateRoute from "app/components/PrivateRoute";
-
+// import PrivateRoute from "app/components/PrivateRoute";
+import Admin from "src/app/layouts/Admin.jsx";
 // redux config
 import { Provider } from "react-redux";
 import store from "src/redux/store.js";
@@ -16,7 +16,7 @@ import store from "src/redux/store.js";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faStroopwafel } from "@fortawesome/free-solid-svg-icons";
 
-import "src/assets/sass/mian.scss";
+// import "src/assets/sass/mian.scss";
 
 //pages
 import routeOptions from "app/routes/Routes.js";
@@ -35,42 +35,19 @@ if (localStorage.jwtToken) {
 }
 class App extends Component {
   componentDidMount() {
-    let windowHight = window.innerHeight - 120;
-    document
-      .getElementsByClassName("container-main")[0]
-      .setAttribute("style", "height:" + windowHight + "px");
+    // let windowHight = window.innerHeight - 120;
+    // document
+    //   .getElementsByClassName("container-main")[0]
+    //   .setAttribute("style", "height:" + windowHight + "px");
   }
 
   render() {
     return (
       <Provider store={store}>
         <Router>
-          <div className="container-main">
-            <Switch>
-              {routeOptions.router.map(item => {
-                console.log(item);
-                return (
-                  <Route
-                    key={Math.random() + "ROUTE_"}
-                    exact={item.exact}
-                    path={item.path}
-                    component={item.component}
-                  />
-                );
-              })}
-
-              {routeOptions.private.map(item => {
-                return (
-                  <PrivateRoute
-                    key={Math.random() + "ROUTE_"}
-                    exact={item.exact}
-                    path={item.path}
-                    component={item.component}
-                  />
-                );
-              })}
-            </Switch>
-          </div>
+          <Switch>
+            <Route path="/" component={Admin} />
+          </Switch>
         </Router>
       </Provider>
     );
@@ -78,3 +55,32 @@ class App extends Component {
 }
 
 export default App;
+
+{
+  /* <div className="container-main">
+<Switch>
+  {routeOptions.router.map(item => {
+    console.log(item);
+    return (
+      <Route
+        key={Math.random() + "ROUTE_"}
+        exact={item.exact}
+        path={item.path}
+        component={item.component}
+      />
+    );
+  })}
+
+  {routeOptions.private.map(item => {
+    return (
+      <PrivateRoute
+        key={Math.random() + "ROUTE_"}
+        exact={item.exact}
+        path={item.path}
+        component={item.component}
+      />
+    );
+  })}
+</Switch>
+</div> */
+}

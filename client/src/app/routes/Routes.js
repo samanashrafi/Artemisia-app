@@ -43,7 +43,7 @@ export default {
   ],
   private: [
     {
-      path: "/",
+      path: "/admin",
       name: "Dashboard",
       rtlName: "داشبورد",
       icon: "Dashboard",
